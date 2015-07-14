@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>icons/cog.png</file>
+        <file>icons/database_add.png</file>
+        <file>icons/database_edit.png</file>
+        <file>icons/database_save.png</file>
+        <file>icons/image_add.png</file>
+        <file>icons/package.png</file>
+        <file>icons/user_add.png</file>
+        <file>icons/user_delete.png</file>
+        <file>icons/user_edit.png</file>
+        <file>icons/user_magnify.png</file>
+        <file>icons/xhtml.png</file>
+        <file>icons/door_in.png</file>
+        <file>icons/connect.png</file>
+        <file>icons/database_connect.png</file>
+        <file>icons/disconnect.png</file>
+    </qresource>
+</RCC>
