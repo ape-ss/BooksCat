@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>900</width>
-    <height>512</height>
+    <width>1024</width>
+    <height>519</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -32,7 +32,19 @@
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
-      <widget class="QTreeView" name="treeView"/>
+      <widget class="QTreeWidget" name="treeWidget">
+       <property name="allColumnsShowFocus">
+        <bool>false</bool>
+       </property>
+       <property name="headerHidden">
+        <bool>false</bool>
+       </property>
+       <column>
+        <property name="text">
+         <string>Книги</string>
+        </property>
+       </column>
+      </widget>
       <widget class="QWebView" name="webView">
        <property name="url">
         <url>
@@ -49,7 +61,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>900</width>
+     <width>1024</width>
      <height>21</height>
     </rect>
    </property>
@@ -71,31 +83,38 @@
      <string>Книги</string>
     </property>
     <addaction name="acAddBook"/>
-    <addaction name="acEditUser"/>
+    <addaction name="acEditBook"/>
     <addaction name="acAddCover"/>
     <addaction name="separator"/>
     <addaction name="acPrintCard"/>
     <addaction name="separator"/>
-    <addaction name="acDeleteUser"/>
+    <addaction name="acDeleteBook"/>
    </widget>
    <widget class="QMenu" name="mnuFilter">
     <property name="title">
      <string>Фильтр</string>
     </property>
     <addaction name="acShowAll"/>
+    <addaction name="acAddFilter"/>
+    <addaction name="acDeleteFilter"/>
    </widget>
    <widget class="QMenu" name="mnuDictionaries">
     <property name="title">
      <string>Справочники</string>
     </property>
+    <addaction name="acDictAuthors"/>
+    <addaction name="acDictGenres"/>
    </widget>
    <widget class="QMenu" name="mnuTools">
     <property name="title">
      <string>Инструменты</string>
     </property>
     <addaction name="acFind"/>
+    <addaction name="acExportHTML"/>
+    <addaction name="separator"/>
+    <addaction name="acOptions"/>
    </widget>
-   <widget class="QMenu" name="menu_6">
+   <widget class="QMenu" name="mnuHelp">
     <property name="title">
      <string>?</string>
     </property>
@@ -105,7 +124,7 @@
    <addaction name="mnuFilter"/>
    <addaction name="mnuDictionaries"/>
    <addaction name="mnuTools"/>
-   <addaction name="menu_6"/>
+   <addaction name="mnuHelp"/>
   </widget>
   <widget class="QToolBar" name="tbFind">
    <property name="windowTitle">
@@ -153,9 +172,9 @@
    <addaction name="acBackup"/>
    <addaction name="acPack"/>
   </widget>
-  <widget class="QToolBar" name="tbUsers">
+  <widget class="QToolBar" name="tbBooks">
    <property name="windowTitle">
-    <string>Пользователи</string>
+    <string>Книги</string>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
@@ -164,13 +183,13 @@
     <bool>false</bool>
    </attribute>
    <addaction name="acAddBook"/>
-   <addaction name="acEditUser"/>
+   <addaction name="acEditBook"/>
    <addaction name="acAddCover"/>
-   <addaction name="acDeleteUser"/>
+   <addaction name="acDeleteBook"/>
   </widget>
-  <widget class="QToolBar" name="toolBar">
+  <widget class="QToolBar" name="tbDictionaries">
    <property name="windowTitle">
-    <string>Импорт/Экспорт</string>
+    <string>Справочники</string>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
@@ -178,11 +197,26 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="acDictAuthors"/>
+   <addaction name="acDictGenres"/>
+  </widget>
+  <widget class="QToolBar" name="tbFilter">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="acAddFilter"/>
+   <addaction name="acDeleteFilter"/>
   </widget>
   <action name="acNew">
    <property name="icon">
     <iconset resource="res.qrc">
-     <normaloff>:/images/icons/database_add.png</normaloff>:/images/icons/database_add.png</iconset>
+     <normaloff>:/images/icons/database--plus.png</normaloff>:/images/icons/database--plus.png</iconset>
    </property>
    <property name="text">
     <string>Новая...</string>
@@ -194,7 +228,7 @@
   <action name="acOpen">
    <property name="icon">
     <iconset resource="res.qrc">
-     <normaloff>:/images/icons/database_edit.png</normaloff>:/images/icons/database_edit.png</iconset>
+     <normaloff>:/images/icons/database--pencil.png</normaloff>:/images/icons/database--pencil.png</iconset>
    </property>
    <property name="text">
     <string>Открыть...</string>
@@ -211,7 +245,7 @@
   <action name="acBackup">
    <property name="icon">
     <iconset resource="res.qrc">
-     <normaloff>:/images/icons/database_save.png</normaloff>:/images/icons/database_save.png</iconset>
+     <normaloff>:/images/icons/database-export.png</normaloff>:/images/icons/database-export.png</iconset>
    </property>
    <property name="text">
     <string>Резервная копия...</string>
@@ -223,7 +257,7 @@
   <action name="acPack">
    <property name="icon">
     <iconset resource="res.qrc">
-     <normaloff>:/images/icons/package.png</normaloff>:/images/icons/package.png</iconset>
+     <normaloff>:/images/icons/box-resize-actual.png</normaloff>:/images/icons/box-resize-actual.png</iconset>
    </property>
    <property name="text">
     <string>Сжать</string>
@@ -235,7 +269,7 @@
   <action name="acQuit">
    <property name="icon">
     <iconset resource="res.qrc">
-     <normaloff>:/images/icons/door_in.png</normaloff>:/images/icons/door_in.png</iconset>
+     <normaloff>:/images/icons/door-open-out.png</normaloff>:/images/icons/door-open-out.png</iconset>
    </property>
    <property name="text">
     <string>Выход</string>
@@ -247,7 +281,7 @@
   <action name="acFind">
    <property name="icon">
     <iconset resource="res.qrc">
-     <normaloff>:/images/icons/user_magnify.png</normaloff>:/images/icons/user_magnify.png</iconset>
+     <normaloff>:/images/icons/magnifier.png</normaloff>:/images/icons/magnifier.png</iconset>
    </property>
    <property name="text">
     <string>Поиск...</string>
@@ -259,7 +293,7 @@
   <action name="acAddBook">
    <property name="icon">
     <iconset resource="res.qrc">
-     <normaloff>:/images/icons/user_add.png</normaloff>:/images/icons/user_add.png</iconset>
+     <normaloff>:/images/icons/book--plus.png</normaloff>:/images/icons/book--plus.png</iconset>
    </property>
    <property name="text">
     <string>Добавить...</string>
@@ -268,10 +302,10 @@
     <string>Добавить книгу в базу данных</string>
    </property>
   </action>
-  <action name="acEditUser">
+  <action name="acEditBook">
    <property name="icon">
     <iconset resource="res.qrc">
-     <normaloff>:/images/icons/user_edit.png</normaloff>:/images/icons/user_edit.png</iconset>
+     <normaloff>:/images/icons/book--pencil.png</normaloff>:/images/icons/book--pencil.png</iconset>
    </property>
    <property name="text">
     <string>Редактировать...</string>
@@ -283,7 +317,7 @@
   <action name="acAddCover">
    <property name="icon">
     <iconset resource="res.qrc">
-     <normaloff>:/images/icons/image_add.png</normaloff>:/images/icons/image_add.png</iconset>
+     <normaloff>:/images/icons/image-vertical.png</normaloff>:/images/icons/image-vertical.png</iconset>
    </property>
    <property name="text">
     <string>Добавить обложку...</string>
@@ -293,6 +327,10 @@
    </property>
   </action>
   <action name="acPrintCard">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/images/icons/card.png</normaloff>:/images/icons/card.png</iconset>
+   </property>
    <property name="text">
     <string>Напечатать учетную карточку</string>
    </property>
@@ -300,10 +338,10 @@
     <string>Напечатать учетную карточку</string>
    </property>
   </action>
-  <action name="acDeleteUser">
+  <action name="acDeleteBook">
    <property name="icon">
     <iconset resource="res.qrc">
-     <normaloff>:/images/icons/user_delete.png</normaloff>:/images/icons/user_delete.png</iconset>
+     <normaloff>:/images/icons/book--minus.png</normaloff>:/images/icons/book--minus.png</iconset>
    </property>
    <property name="text">
     <string>Удалить</string>
@@ -323,13 +361,79 @@
   <action name="acNetworkDB">
    <property name="icon">
     <iconset resource="res.qrc">
-     <normaloff>:/images/icons/database_connect.png</normaloff>:/images/icons/database_connect.png</iconset>
+     <normaloff>:/images/icons/database-cloud.png</normaloff>:/images/icons/database-cloud.png</iconset>
    </property>
    <property name="text">
     <string>Сетевая база</string>
    </property>
    <property name="toolTip">
     <string>Сетевая база...</string>
+   </property>
+  </action>
+  <action name="acDictAuthors">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/images/icons/quill.png</normaloff>:/images/icons/quill.png</iconset>
+   </property>
+   <property name="text">
+    <string>Авторы</string>
+   </property>
+   <property name="toolTip">
+    <string>Справочник авторов</string>
+   </property>
+  </action>
+  <action name="acDictGenres">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/images/icons/photo-album.png</normaloff>:/images/icons/photo-album.png</iconset>
+   </property>
+   <property name="text">
+    <string>Жанры</string>
+   </property>
+   <property name="toolTip">
+    <string>Справочник жанров</string>
+   </property>
+  </action>
+  <action name="acAddFilter">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/images/icons/funnel--plus.png</normaloff>:/images/icons/funnel--plus.png</iconset>
+   </property>
+   <property name="text">
+    <string>Добавить фильтр...</string>
+   </property>
+   <property name="toolTip">
+    <string>Установить фильтр на выборку</string>
+   </property>
+  </action>
+  <action name="acDeleteFilter">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/images/icons/funnel--minus.png</normaloff>:/images/icons/funnel--minus.png</iconset>
+   </property>
+   <property name="text">
+    <string>Удалить фильтр...</string>
+   </property>
+   <property name="toolTip">
+    <string>Удалить фильтр из выборки</string>
+   </property>
+  </action>
+  <action name="acExportHTML">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/images/icons/blue-document-globe.png</normaloff>:/images/icons/blue-document-globe.png</iconset>
+   </property>
+   <property name="text">
+    <string>Экспорт в xHTML</string>
+   </property>
+  </action>
+  <action name="acOptions">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/images/icons/gear.png</normaloff>:/images/icons/gear.png</iconset>
+   </property>
+   <property name="text">
+    <string>Параметры...</string>
    </property>
   </action>
  </widget>

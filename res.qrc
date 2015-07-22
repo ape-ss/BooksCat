@@ -1,19 +1,31 @@
 <RCC>
     <qresource prefix="/images">
-        <file>icons/cog.png</file>
-        <file>icons/database_add.png</file>
-        <file>icons/database_edit.png</file>
-        <file>icons/database_save.png</file>
-        <file>icons/image_add.png</file>
-        <file>icons/package.png</file>
-        <file>icons/user_add.png</file>
-        <file>icons/user_delete.png</file>
-        <file>icons/user_edit.png</file>
-        <file>icons/user_magnify.png</file>
-        <file>icons/xhtml.png</file>
-        <file>icons/door_in.png</file>
-        <file>icons/connect.png</file>
-        <file>icons/database_connect.png</file>
-        <file>icons/disconnect.png</file>
+        <file>icons/book--minus.png</file>
+        <file>icons/book--pencil.png</file>
+        <file>icons/book--plus.png</file>
+        <file>icons/box.png</file>
+        <file>icons/box-resize-actual.png</file>
+        <file>icons/card.png</file>
+        <file>icons/database-cloud.png</file>
+        <file>icons/database-export.png</file>
+        <file>icons/database-network.png</file>
+        <file>icons/database--pencil.png</file>
+        <file>icons/database--plus.png</file>
+        <file>icons/door-open-out.png</file>
+        <file>icons/funnel--minus.png</file>
+        <file>icons/funnel--plus.png</file>
+        <file>icons/gear.png</file>
+        <file>icons/image-vertical.png</file>
+        <file>icons/quill.png</file>
+        <file>icons/binocular.png</file>
+        <file>icons/magnifier.png</file>
+        <file>icons/blue-document-excel.png</file>
+        <file>icons/blue-document-excel-table.png</file>
+        <file>icons/blue-document-globe.png</file>
+        <file>icons/blue-document-pdf.png</file>
+        <file>icons/blue-document-php.png</file>
+        <file>icons/blue-document-text.png</file>
+        <file>icons/blue-document-word.png</file>
+        <file>icons/photo-album.png</file>
     </qresource>
 </RCC>
